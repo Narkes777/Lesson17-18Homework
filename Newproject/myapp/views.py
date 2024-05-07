@@ -1,10 +1,6 @@
 from django.shortcuts import render
-from .models import Course
+from .models import Student
 
-# Create your views here.
-
-
-def students_by_course(request, course_id):
-    course = Course.objects.get(pk=course_id)
-    students = course.student_set.all()
-    return render(request, 'students_by_course.html', {'students': students})
+def students_in_course(request, course_id):
+    students = Student.objects.filter(course_id=course_id)
+    return render(request, 'students.html', {'students': students})
